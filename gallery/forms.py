@@ -9,9 +9,9 @@ class PhotoDirectForm(ModelForm):
     class Meta:
         model = Photo
     image = CloudinaryJsFileField(
-        attrs={'style': "margin-top: 30px"},
+        attrs={'style': "margin-top: 30px", 'multiple': 1},
         options={
             'tags': "directly_uploaded",
             'crop': 'limit', 'width': 1000, 'height': 1000,
-            'eager' [{'crop': 'fill', 'width': 150, 'height': 100}]
+            'eager': [{'crop': 'fill', 'width': 150, 'height': 100}],
         })
