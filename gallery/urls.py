@@ -3,5 +3,5 @@ from gallery import views
 
 urlpatterns = [
     path('', views.index, name='index'),
-    path('upload/', views.upload, name='upload'),
+    path('upload/', views.upload_prompt, name='upload_prompt'),
 ]

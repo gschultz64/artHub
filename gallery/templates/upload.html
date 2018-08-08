@@ -1,5 +1,12 @@
 {% extends 'base.html' %} 
 {% load cloudinary %}
+{% cloudinary_includes %}
+{% cloudinary_js_config %}
 {% block content %}
-<h1>Upload your work!</h1>
+  <form action="{% url " photo_album.views.direct_upload_complete " %}" method="post">
+    {% csrf_token %} {{ direct_form }}
+    <input type="submit" value="Submit" />
+  </form>
+ {% cloudinary photo.image format="jpg" width=120 height=80 crop="fill" %}
+
 {% endblock %}
