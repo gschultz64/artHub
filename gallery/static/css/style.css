@@ -1,51 +1,83 @@
+@import url('https://fonts.googleapis.com/css?family=Kaushan+Script|Roboto');
+
+body {
+  background: #eee;
+  margin: 0 auto;
+  font-family: 'Roboto', sans-serif;
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
+
+main {
+  margin: .5em;
+  flex: 1 0 auto;
+}
+
 h1 {
   color: #616161;
 }
 
-ul {
+.right {
+  float: right;
+}
+
+/* Nav Bar */
+
+nav {
+  background: #880E4F;
+  color: #fff;
+  padding: .5em;
+}
+
+.nav-wrapper {
+  position: relative;
+  height: 100%;
+}
+
+.site-logo {
+  color: #fff;
+  font-size: 2.5em;
+  text-decoration: none;
+  font-family: 'Kaushan Script', cursive;
+}
+
+nav ul {
   list-style-type: none;
   margin: 0;
   padding: 0;
-  overflow: hidden;
-  background-color: #333;
 }
 
-li {
+nav li {
   float: left;
+  padding: 0;
+  transition: background-color .3s;
 }
 
-li a {
-  display: block;
+nav li a {
+  display: inline-block;
   color: white;
   text-align: center;
   padding: 14px 16px;
   text-decoration: none;
 }
 
-li a:hover:not(.active) {
-  background-color: #111;
+nav li a:hover:not(.active) {
+  color: #560027;
 }
 
 .active {
-  background-color: #4CAF50;
-}
-
-body {
-  background: #eee;
-}
-
-nav {
-  background: #880E4F;
-}
-
-.site-logo {
-  color: #fff;
-}
-
-.right {
-  text-align: right;
+  color: rgb(179, 117, 151);
 }
 
 footer {
   text-align: center;
+  background-color: #880E4F;
+  color: #fff;
+  padding: 0.5em;
+  display: block;
+}
+
+i {
+  margin-left: .3em;
 }

@@ -13,30 +13,31 @@
 <body>
   <header>
     <nav>
-      <a href="/" class="site-logo">Art Hub
-        <i class="em em-camera"></i>
-      </a>
-      <ul class="right">
-        <li>
-          <a class="active" href="/">Home</a>
-        </li>
-
-        {% if user.is_authenticated %}
-        <li>
-          <a href="/user/{{ user.username }}">Hello, {{user.username}}!</a>
-        </li>
-        <li>
-          <a href="{url 'upload'}"></a>
-        </li>
-        <li>
-          <a href="{% url 'logout' %}">Logout</a>
-        </li>
-        {% else %}
-        <li>
-          <a href="{% url 'login' %}">Login</a>
-        </li>
-        {% endif %}
-      </ul>
+      <div class="nav-wrapper">
+        <a href="/" class="site-logo">Art Hub
+          <i class="em em-camera"></i>
+        </a>
+        <ul class="right">
+          <li>
+            <a class="active" href="/">Home</a>
+          </li>
+          {% if user.is_authenticated %}
+          <li>
+            <a id="profile" href="/user/{{ user.username }}">Hello, {{user.username}}!</a>
+          </li>
+          <li>
+            <a id="upload" href="{url 'upload'}"></a>
+          </li>
+          <li>
+            <a href="{% url 'logout' %}">Logout</a>
+          </li>
+          {% else %}
+          <li>
+            <a id="login" href="{% url 'login' %}">Login</a>
+          </li>
+          {% endif %}
+        </ul>
+      </div>
     </nav>
   </header>
   <main>
