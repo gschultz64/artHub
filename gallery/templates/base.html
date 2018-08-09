@@ -19,7 +19,7 @@
         </a>
         <ul class="right">
           <li>
-            <a class="active" href="/">Home</a>
+            <a class="active" id="home" href="/">Home</a>
           </li>
           {% if user.is_authenticated %}
           <li>
@@ -34,6 +34,9 @@
           {% else %}
           <li>
             <a id="login" href="{% url 'login' %}">Login</a>
+          </li>
+          <li>
+            <a id="signup" href="{% url 'signup' %}">Signup</a>
           </li>
           {% endif %}
         </ul>
