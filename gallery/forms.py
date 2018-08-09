@@ -1,5 +1,8 @@
-from django.forms import ModelForm
+from django import forms
 
 # forms
 
 
+class LoginForm(forms.Form):
+    username = forms.CharField(label="Username", max_length=64)
+    password = forms.CharField(widget=forms.PasswordInput())
