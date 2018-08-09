@@ -3,10 +3,9 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django import forms
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
-from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
 from .models import Media
-from .forms import LoginForm
+from .forms import LoginForm, SignUpForm
 import requests
 
 # Create your views here.
@@ -21,12 +20,16 @@ def upload(request):
 
     return render(request, 'upload.html')
 
+def forum(request):
+
+    return render(request, 'forum.html')
+
 
 @login_required
 def profile(request, username):
     user = User.objects.get(username=username)
-    media = Media.objects.filter(user=user)
-    return render(request, 'profile.html', {'username': username, 'media': media})
+    # media = Media.objects.filter(user=user)
+    return render(request, 'profile.html', {'username': username, })
 
 
 def login_view(request):
@@ -54,7 +57,7 @@ def login_view(request):
 
 def signup(request):
     if request.method == 'POST':
-        form = UserCreationForm(request.POST)
+        form = SignUpForm(request.POST)
         if form.is_valid():
             form.save()
             username = form.cleaned_data.get('username')
@@ -63,7 +66,7 @@ def signup(request):
             login(request, user)
             return redirect('index')
     else:
-        form = UserCreationForm()
+        form = SignUpForm()
     return render(request, 'signup.html', {'form': form})
 
 

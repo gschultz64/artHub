@@ -11,3 +11,15 @@ class Media(models.Model):
 
     def __unicode__(self):
         return 
+
+class UserProfile(models.Model):
+    bio = models.CharField(max_length=250)
+    
+    user = models.ManyToManyField(User)
+
+    def __str__(self):
+        return 
+
+    def __unicode__(self):
+        return 
+
