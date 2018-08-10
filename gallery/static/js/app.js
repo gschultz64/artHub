@@ -4,9 +4,11 @@ if (pathname !== '/') {
   $("#home").removeClass("active");
   if (pathname === '/login/') {
     $('#login').addClass('active');
-  } else if (pathname === '/upload') {
+  } else if (pathname === '/upload/') {
     $('#upload').addClass('active');
-  } else if (pathname === '/profile') {
-    $('#profile').addClass('active');
+  } else if (pathname === '/forum/') {
+    $('#forum').addClass('active');
+  } else if (pathname === '/signup/') {
+    $('#signup').addClass('active');
   }
 }

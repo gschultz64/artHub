@@ -16,8 +16,7 @@ import requests
 
 
 def index(request):
-    media = Media.objects.all()
-    return render(request, 'index.html', {'media': media})
+    return render(request, 'index.html',)
 
 
 def login_view(request):
@@ -61,8 +60,8 @@ def signup(request):
 @login_required
 def profile(request, username):
     user = User.objects.get(username=username)
-    # media = Media.objects.filter(user=user)
-    return render(request, 'profile.html', {'username': username, })
+    media = Media.objects.filter(user=user)
+    return render(request, 'profile.html', {'username': username, 'media': media})
 
 
 @login_required
@@ -77,7 +76,7 @@ def update_profile(request):
             first_name = profile_form.cleaned_data.get('first_name')
             last_name = profile_form.cleaned_data.get('last_name')
             email = profile_form.cleaned_data.get('email')
-            user = authenticate(username=username, password=raw_password,
+            authenticate(username=username, password=raw_password,
                                 first_name=first_name, last_name=last_name, email=email)
             return redirect('profile')
     else:
@@ -88,37 +87,13 @@ def update_profile(request):
 @login_required
 def upload(request):
     if request.method == 'POST':
-        form = UploadForm(request.POST)
-        # if form.is_valid():
-        #     u = form.cleaned_data['username']
-        #     p = form.cleaned_data['password']
-        #     user = authenticate(username=u, password=p)
-        #     if user is not None:
-        #         if user.is_active:
-        #             login(request, user)
-        #             return HttpResponseRedirect('/')
-        #         else:
-        #             print("Account disabled")
-        #             return HttpResponseRedirect('/login')
-        #     else:
-        #         print("Username and/or password is incorrect")
-        # else:
-        #     print("form is not valid")
+        form = UploadForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            return redirect('upload')
     else:
         form = UploadForm()
-    return render(request, 'upload.html')
-
-
-def simple_upload(request):
-    if request.method == 'POST' and request.FILES['myfile']:
-        myfile = request.FILES['myfile']
-        fs = FileSystemStorage()
-        filename = fs.save(myfile.name, myfile)
-        uploaded_file_url = fs.url(filename)
-        return render(request, 'test_upload.html', {
-            'uploaded_file_url': uploaded_file_url
-        })
-    return render(request, 'test_upload.html')
+    return render(request, 'upload.html', {'form': form})
 
 
 def forum(request):

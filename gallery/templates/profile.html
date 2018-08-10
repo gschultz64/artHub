@@ -1,7 +1,13 @@
+
 {% extends 'base.html' %} 
 {% block content %}
-<h1>{{user}}'s Profile</h1>
-<a href="/update">
-  <p>Edit Your Profile</p>
-</a>
+<h1>{{username}}'s Profile</h1>
+<a href="/update">Edit Your Profile</a>
+<br/>
+<h2>{{username}}'s Uploads:</h2>
+{% for file in media %}
+<div>
+  <img src="{{MEDIA_URL}}{{media.file}}" alt="{{ media.description }}">
+</div>
+{% endfor %}
 {% endblock %}

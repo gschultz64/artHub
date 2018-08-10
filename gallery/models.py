@@ -5,9 +5,18 @@ from django.dispatch import receiver
 
 # models
 
+
+def user_directory_path(instance, filename):
+    return 'user_{0}/{1}'.format(instance.user.username, filename)
+
+
 class Media(models.Model):
     name = models.CharField(max_length=100)
-    user = models.ForeignKey(User, on_delete=models.CASCADE, default=1)
+    description = models.CharField(max_length=255, blank=True, null=True)
+    file = models.ImageField(upload_to=user_directory_path)
+    uploaded_at = models.DateTimeField(auto_now_add=True)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+
     def __str__(self):
         return self.name
 
