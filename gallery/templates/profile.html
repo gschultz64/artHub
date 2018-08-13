@@ -1,6 +1,4 @@
-
-{% extends 'base.html' %} 
-{% block content %}
+ {% extends 'base.html' %} {% block content %}
 <h1>{{username}}'s Profile</h1>
 <a href="/update">Edit Your Profile</a>
 <br/>
@@ -10,4 +8,5 @@
   <img src="{{MEDIA_URL}}{{media.file}}" alt="{{ media.description }}">
 </div>
 {% endfor %}
+
 {% endblock %}

@@ -1,6 +1,7 @@
-from django.shortcuts import render, redirect
-from django.http import HttpResponse, HttpResponseRedirect
+from django.shortcuts import render, redirect, HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
 from django import forms
+from django.views import View
 from django.conf import settings
 from django.core.files.storage import FileSystemStorage
 from django.contrib.auth.models import User
@@ -8,9 +9,8 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.db import transaction
 from .models import Media
-from .forms import LoginForm, SignUpForm, ProfileForm, UploadForm
+from .forms import *
 import requests
-
 
 # Create your views here.
 
@@ -61,7 +61,7 @@ def signup(request):
 def profile(request, username):
     user = User.objects.get(username=username)
     media = Media.objects.filter(user=user)
-    return render(request, 'profile.html', {'username': username, 'media': media})
+    return render(request, 'profile.html', {'username': username, 'media': media,})
 
 
 @login_required
@@ -77,7 +77,7 @@ def update_profile(request):
             last_name = profile_form.cleaned_data.get('last_name')
             email = profile_form.cleaned_data.get('email')
             authenticate(username=username, password=raw_password,
-                                first_name=first_name, last_name=last_name, email=email)
+                         first_name=first_name, last_name=last_name, email=email)
             return redirect('profile')
     else:
         profile_form = ProfileForm()
@@ -94,6 +94,22 @@ def upload(request):
     else:
         form = UploadForm()
     return render(request, 'upload.html', {'form': form})
+
+
+class BasicUploadView(View):
+    def get(self, request):
+        media_list = Media.objects.all()
+        return render(self.request, 'media/basic_upload/index.html', {'media': media_list})
+
+    def post(self, request):
+        form = UploadForm(self.request.POST, self.request.FILES)
+        if form.is_valid():
+            media = form.save()
+            data = {'is_valid': True, 'name': media.file.name,
+                    'url': media.file.url}
+        else:
+            data = {'is_valid': False}
+        return JsonResponse(data)
 
 
 def forum(request):

@@ -12,3 +12,4 @@ if (pathname !== '/') {
     $('#signup').addClass('active');
   }
 }
+
