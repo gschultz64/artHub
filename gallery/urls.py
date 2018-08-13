@@ -11,5 +11,4 @@ urlpatterns = [
     path('logout/', views.logout_view, name='logout'),
     path('signup/', views.signup, name='signup'),
     path('update/', views.update_profile, name='update'),
-    path('basicupload/', views.BasicUploadView.as_view(), name='basic_upload')
 ]

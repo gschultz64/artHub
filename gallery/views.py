@@ -103,22 +103,6 @@ def upload(request, username):
     return render(request, 'upload.html', {'form': form, 'username': username, 'media': media})
 
 
-class BasicUploadView(View):
-    def get(self, request):
-        media_list = Media.objects.all()
-        return render(self.request, 'basic_upload.html', {'media': media_list})
-
-    def post(self, request):
-        form = UploadForm(self.request.POST, self.request.FILES)
-        if form.is_valid():
-            media = form.save()
-            data = {'is_valid': True, 'name': media.file.name,
-                    'url': media.file.url}
-        else:
-            data = {'is_valid': False}
-        return JsonResponse(data)
-
-
 def forum(request):
 
     return render(request, 'forum.html')
