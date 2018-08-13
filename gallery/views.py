@@ -60,7 +60,7 @@ def signup(request):
 @login_required
 def profile(request, username):
     user = User.objects.get(username=username)
-    media = Media.objects.filter(user=user)
+    media = Media.objects.filter(user_id=user)
     return render(request, 'profile.html', {'username': username, 'media': media,})
 
 
@@ -87,16 +87,13 @@ def update_profile(request):
 @login_required
 def upload(request, username):
     user = User.objects.get(username=username)
-    media = Media.objects.filter(user_id=user.id)
-
+    media = Media.objects.filter(user_id_id=user.id)
     if request.method == 'POST':
         form = UploadForm(request.POST, request.FILES)
-        form.user_id = user.id
-
-        print("form.user_id ", form.user_id , ", user.id ", user.id)
         if form.is_valid():
-            form.save()
-            print('saved the form')
+            print('user:', user, ' user_id: ', user.id)
+            instance = Media(file=request.FILES['file'],user_id_id=user.id, name=form.fields['name'], description=form.fields['description'])
+            instance.save()
             return redirect('upload',username)
     else:
         form = UploadForm()

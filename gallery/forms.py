@@ -36,13 +36,9 @@ class ProfileForm(forms.Form):
     bio = forms.CharField(label='Bio', max_length=250)
 
 
-class UploadForm(forms.ModelForm):
-
-    link = forms.URLField(label='Image or Video URL',
-                          max_length=255, help_text='Optional', required=False)
-    # user_id = forms.CharField(widget = forms.HiddenInput(), required=False)
-
-    class Meta:
-        model = Media
-        fields = ('name', 'description', 'file', 'link', 'user_id')
-        widgets = {'user_id': forms.HiddenInput()}
+class UploadForm(forms.Form):
+    name = forms.CharField(max_length=100, help_text='Required.')
+    description = forms.CharField(
+        max_length=255, required=False, help_text='Optional')
+    file = forms.ImageField(help_text='Required.')
+    

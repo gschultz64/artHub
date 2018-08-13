@@ -1,19 +1,14 @@
 {% extends 'base.html' %} {% block content %}
 <h1>Upload an image or video</h1>
 <form method="post" enctype="multipart/form-data" action=".">
- {% csrf_token %} 
- {{form.name}}
- {{form.description}}
- {{form.file}}
- {{form.user_id}}
-<!--{#{% for field in form %}
+  {% csrf_token %} {% for field in form %}
   <p>
     {{field.label_tag}}
     <br/> {{field}} {% if field.help_text %}
     <small style="color: grey">{{ field.help_text }}</small>
     {% endif %}
   </p>
-  {% endfor %}#} -->
+  {% endfor %}
   <button type="submit">Upload</button>
 </form>
 {% if uploaded_file_url %}

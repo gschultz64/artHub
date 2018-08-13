@@ -7,7 +7,7 @@ from django.contrib.auth.models import User
 
 
 def user_directory_path(instance, filename):
-    return 'user_{0}/{1}'.format(instance.user.username, filename)
+    return 'user_{0}/{1}'.format(instance.user_id.username, filename)
 
 
 class Media(models.Model):
