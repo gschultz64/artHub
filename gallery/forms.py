@@ -1,5 +1,6 @@
 from django import forms
 from django.forms import ModelForm
+from django.forms.widgets import HiddenInput
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from .models import *
@@ -36,9 +37,12 @@ class ProfileForm(forms.Form):
 
 
 class UploadForm(forms.ModelForm):
+
     link = forms.URLField(label='Image or Video URL',
                           max_length=255, help_text='Optional', required=False)
+    # user_id = forms.CharField(widget = forms.HiddenInput(), required=False)
 
     class Meta:
         model = Media
-        fields = ('name', 'description', 'file', 'link')
+        fields = ('name', 'description', 'file', 'link', 'user_id')
+        widgets = {'user_id': forms.HiddenInput()}

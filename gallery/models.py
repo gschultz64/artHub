@@ -15,7 +15,7 @@ class Media(models.Model):
     description = models.CharField(max_length=255, blank=True, null=True)
     file = models.ImageField(upload_to=user_directory_path)
     uploaded_at = models.DateTimeField(auto_now_add=True)
-    user = models.ForeignKey(User, on_delete=models.CASCADE, default=2)
+    user_id = models.ForeignKey(User, on_delete=models.CASCADE)
 
     def __str__(self):
         return self.name

@@ -1,11 +1,8 @@
-{% extends "base.html" %} {% block title %}Basic Upload{% endblock %} {% block javascript %} {# JQUERY FILE UPLOAD SCRIPTS
-#}
-<script src="{% static 'js/jquery-file-upload/vendor/jquery.ui.widget.js' %}"></script>
-<script src="{% static 'js/jquery-file-upload/jquery.iframe-transport.js' %}"></script>
-<script src="{% static 'js/jquery-file-upload/jquery.fileupload.js' %}"></script>
-
-{# PHOTOS PAGE SCRIPTS #}
-<script src="{% static 'photos/js/basic-upload.js' %}"></script>
+{% extends "base.html" %} {% block title %}Basic Upload{% endblock %} 
+{% load staticfiles %}
+{% block javascript %}
+    {# PHOTOS PAGE SCRIPTS #}
+    <script src="{% static 'js/basic-upload.js' %}"></script>
 {% endblock %} {# 1. BUTTON TO TRIGGER THE ACTION #}
 <button type="button" class="btn btn-primary js-upload-photos">
   <span class="glyphicon glyphicon-cloud-upload"></span> Upload photos
@@ -26,7 +23,7 @@
     </tr>
   </thead>
   <tbody>
-    {% for photo in media %}
+    {% for media in media %}
     <tr>
       <td>
         <a href="{{ media.file.url }}">{{ media.file.name }}</a>

@@ -85,21 +85,28 @@ def update_profile(request):
 
 
 @login_required
-def upload(request):
+def upload(request, username):
+    user = User.objects.get(username=username)
+    media = Media.objects.filter(user_id=user.id)
+
     if request.method == 'POST':
         form = UploadForm(request.POST, request.FILES)
+        form.user_id = user.id
+
+        print("form.user_id ", form.user_id , ", user.id ", user.id)
         if form.is_valid():
             form.save()
-            return redirect('upload')
+            print('saved the form')
+            return redirect('upload',username)
     else:
         form = UploadForm()
-    return render(request, 'upload.html', {'form': form})
+    return render(request, 'upload.html', {'form': form, 'username': username, 'media': media})
 
 
 class BasicUploadView(View):
     def get(self, request):
         media_list = Media.objects.all()
-        return render(self.request, 'media/basic_upload/index.html', {'media': media_list})
+        return render(self.request, 'basic_upload.html', {'media': media_list})
 
     def post(self, request):
         form = UploadForm(self.request.POST, self.request.FILES)
