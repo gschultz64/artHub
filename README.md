@@ -12,6 +12,8 @@
 - Python
 - Django Templating Language
 - Django packages
+- jQuery
+- custom CSS
 
 ### The Process
 
