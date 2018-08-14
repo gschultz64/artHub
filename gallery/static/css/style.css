@@ -1,5 +1,4 @@
 @import url('https://fonts.googleapis.com/css?family=Kaushan+Script|Roboto');
-
 body {
   background: #eee;
   margin: 0 auto;
@@ -81,4 +80,62 @@ footer {
 
 i {
   margin-left: .3em;
+}
+
+.card {
+  display: inline-block;
+  background-color: #fff;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  margin: .5em;
+  border-radius: 5px;
+  text-align: center;
+}
+
+.gallery {
+  display: inline-block;
+  cursor: auto;
+  transition: 0.3s;
+  border-radius: 5px 5px 0 0;
+  text-align: center;
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 0 4px;
+}
+
+.container {
+  text-align: center;
+  padding: .5em 1em;
+}
+
+@media screen and (max-width: 600px) {
+  .card {
+    width: 80vw;
+    margin-left: 8%;
+  }
+  .gallery {
+    max-width: 100%;
+  }
+}
+
+@media screen and (min-width: 601px) {
+  .card {
+    width: 40vw;
+    margin-left: 5vw;
+  }
+  .gallery {
+    max-width: 100%;
+  }
+}
+
+@media screen and (min-width: 993px) {
+  .card {
+    width: 30vw;
+    margin-left: .5em;
+  }
+  .gallery {
+    max-width: 100%;
+  }
 }

@@ -7,16 +7,20 @@ from django.core.files.storage import FileSystemStorage
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
-from django.db import transaction
-from .models import Media
-from .forms import *
+from .models import Media, User
+from .forms import LoginForm, SignUpForm, UploadForm
 import requests
 
 # Create your views here.
 
 
 def index(request):
-    return render(request, 'index.html',)
+    media = Media.objects.all()
+    return render(request, 'index.html', {'media': media})
+
+def show(request, media_id):
+    media = Media.objects.get(id=media_id)
+    return render(request, 'show.html', {'media': media})
 
 
 def login_view(request):
@@ -61,27 +65,8 @@ def signup(request):
 def profile(request, username):
     user = User.objects.get(username=username)
     media = Media.objects.filter(user_id=user)
-    return render(request, 'profile.html', {'username': username, 'media': media,})
+    return render(request, 'profile.html', {'username': username, 'media': media, })
 
-
-@login_required
-@transaction.atomic
-def update_profile(request):
-    if request.method == 'POST':
-        profile_form = ProfileForm(request.POST)
-        if profile_form.is_valid():
-            profile_form.save()
-            username = profile_form.cleaned_data.get('username')
-            raw_password = profile_form.cleaned_data.get('password1')
-            first_name = profile_form.cleaned_data.get('first_name')
-            last_name = profile_form.cleaned_data.get('last_name')
-            email = profile_form.cleaned_data.get('email')
-            authenticate(username=username, password=raw_password,
-                         first_name=first_name, last_name=last_name, email=email)
-            return redirect('profile')
-    else:
-        profile_form = ProfileForm()
-    return render(request, 'update_profile.html', {'profile_form': profile_form})
 
 
 @login_required
@@ -92,17 +77,17 @@ def upload(request, username):
         form = UploadForm(request.POST, request.FILES)
         if form.is_valid():
             print('user:', user, ' user_id: ', user.id)
-            instance = Media(file=request.FILES['file'],user_id_id=user.id, name=form.fields['name'], description=form.fields['description'])
+            instance = Media(file=request.FILES['file'], user_id_id=user.id,
+                             name=form.fields['name'], description=form.fields['description'])
             instance.save()
-            return redirect('upload',username)
+            return redirect('upload', username)
     else:
         form = UploadForm()
     return render(request, 'upload.html', {'form': form, 'username': username, 'media': media})
 
 
-def forum(request):
-
-    return render(request, 'forum.html')
+def chat(request):
+    return render(request, 'chat.html')
 
 
 def logout_view(request):

@@ -28,17 +28,8 @@ class SignUpForm(UserCreationForm):
                   'email', 'password1', 'password2', )
 
 
-class ProfileForm(forms.Form):
-    first_name = forms.CharField(max_length=30)
-    last_name = forms.CharField(max_length=30)
-    email = forms.EmailField(max_length=100)
-    username = forms.CharField(label="Username", max_length=64)
-    bio = forms.CharField(label='Bio', max_length=250)
-
-
 class UploadForm(forms.Form):
     name = forms.CharField(max_length=100, help_text='Required.')
     description = forms.CharField(
         max_length=255, required=False, help_text='Optional')
     file = forms.ImageField(help_text='Required.')
-    

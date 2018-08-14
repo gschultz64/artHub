@@ -1,7 +1,6 @@
-{% extends 'base.html' %} 
-
+{% extends 'base.html' %}
 {% block content %}
-<h1>Welcome to the Art Hub!</h1>
+<h1>{{file.name}}</h1>
 <div class="row">
   <div class="column">
     {% for file in media %}
@@ -9,7 +8,7 @@
       <img class="gallery" src="/media/{{MEDIA_ROOT}}{{file.file}}" alt="{{ file.name }}">
       <div class="container">
         <a href="/{{media.id}}/">
-          <p>{{file.name}}</p>
+          <p>{{file.description}}</p>
         </a>
         <p></p>
       </div>

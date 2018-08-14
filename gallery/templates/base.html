@@ -1,62 +1,16 @@
+{% include './partial/header.html' %} 
 {% load staticfiles %}
-<!DOCTYPE html>
-<html lang="en">
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>{% block title %}Art Hub{% endblock %}</title>
-  <link href="https://afeld.github.io/emoji-css/emoji.css" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  <link rel="stylesheet" href="{% static 'css/style.css' %}">
-</head>
+<main>
 
-<body>
-  <header>
-    <nav>
-      <div class="nav-wrapper">
-        <a href="/" class="site-logo">Art Hub
-          <i class="em em-camera"></i>
-        </a>
-        <ul class="right">
-          <li>
-            <a class="active" id="home" href="/">Home</a>
-          </li>
-          {% if user.is_authenticated %}
-          <li>
-            <a id="profile" href="/user/{{ user.username }}">Hello, {{user.username}}!</a>
-          </li>
-          <li>
-            <a id="upload" href="/user/{{ user.username }}/upload">Upload</a>
-          </li>
-          <li>
-            <a id="forum" href="{% url 'forum' %}">Forum</a>
-          </li>
-          <li>
-            <a href="{% url 'logout' %}">Logout</a>
-          </li>
-          {% else %}
-          <li>
-            <a id="login" href="{% url 'login' %}">Login</a>
-          </li>
-          <li>
-            <a id="signup" href="{% url 'signup' %}">Signup</a>
-          </li>
-          {% endif %}
-        </ul>
-      </div>
-    </nav>
-  </header>
-  <main>
+  {% block content %} {% endblock %}
 
-    {% block content %} {% endblock %}
+</main>
 
-  </main>
-
-  <footer>&copy; 2018 Genevieve Schultz</footer>
-  <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-  <script src="{% static 'js/app.js' %}"></script>
-  {% block javascript %} {% endblock %}
+<footer>&copy; 2018 Genevieve Schultz</footer>
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script src="{% static 'js/app.js' %}"></script>
+{% block javascript %} {% endblock %}
 </body>
 
 </html>
