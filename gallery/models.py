@@ -1,7 +1,5 @@
 from django.db import models
 from django.contrib.auth.models import User
-# from django.db.models.signals import post_save
-# from django.dispatch import receiver
 
 # models
 
@@ -15,6 +13,7 @@ class Media(models.Model):
     description = models.CharField(max_length=255, blank=True, null=True)
     file = models.ImageField(upload_to=user_directory_path)
     uploaded_at = models.DateTimeField(auto_now_add=True)
+    likes = models.IntegerField(default=0)
     user_id = models.ForeignKey(User, on_delete=models.CASCADE)
 
     def __str__(self):

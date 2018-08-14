@@ -7,9 +7,13 @@
   <div class="column">
     {% for file in media %}
     <div class="card">
-      <img class="gallery" src="/media/{{MEDIA_ROOT}}{{file.file}}" alt="{{ file.description }}">
+      <a href="/{{file.id}}/">
+        <img class="gallery" src="/media/{{MEDIA_ROOT}}{{file.file}}" alt="{{ file.description }}">
+      </a>
       <div class="container">
-        <p>{{file.name}}</p>
+        <a href="/{{file.id}}/">
+          <p>{{file.name}}</p>
+        </a>
       </div>
     </div>
     {% endfor %}

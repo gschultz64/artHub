@@ -16,11 +16,12 @@ import requests
 
 def index(request):
     media = Media.objects.all()
+
     return render(request, 'index.html', {'media': media})
 
 def show(request, media_id):
     media = Media.objects.get(id=media_id)
-    return render(request, 'show.html', {'media': media})
+    return render(request, 'show.html', {'media_id': media_id, 'media': media})
 
 
 def login_view(request):
@@ -84,6 +85,18 @@ def upload(request, username):
     else:
         form = UploadForm()
     return render(request, 'upload.html', {'form': form, 'username': username, 'media': media})
+
+
+def like_img(request):
+    media_id = request.GET.get('media_id', None)
+    likes = 0
+    if media_id:
+        media = Media.objects.get(id=int(media_id))
+        if media is not None:
+            likes = media.likes + 1
+            media.likes = likes
+            media.save()
+    return HttpResponse(likes)
 
 
 def chat(request):

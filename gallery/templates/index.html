@@ -6,9 +6,11 @@
   <div class="column">
     {% for file in media %}
     <div class="card">
-      <img class="gallery" src="/media/{{MEDIA_ROOT}}{{file.file}}" alt="{{ file.name }}">
+<a href="/{{file.id}}/">
+  <img class="gallery" src="/media/{{MEDIA_ROOT}}{{file.file}}" alt="{{ file.name }}">
+</a>
       <div class="container">
-        <a href="/{{media.id}}/">
+        <a href="/{{file.id}}/">
           <p>{{file.name}}</p>
         </a>
         <p></p>
