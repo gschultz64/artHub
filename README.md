@@ -1,5 +1,28 @@
 # artHub
 
-## Thanks
+## A Community for Artists to share Images
 
-url(simpleisbetterthancomplex.com)
+### Upload your photography or artwork images. See other artists' work
+
+### Project Organized with Trello
+
+### Technologies
+
+- Django
+- Python
+- Django Templating Language
+- Django packages
+
+### The Process
+
+#### Future Features
+
+- Add Cloudinary or AWS S3 to host images
+- Chat with other users: Django Channels
+- Comment on Images
+- Follow other users
+- Add E-Commerce so artists can sell their work
+
+##### Thanks
+
+[So many Django tutorials! Simple is Better Than Complex](simpleisbetterthancomplex.com)
