@@ -14,6 +14,7 @@
 - Django packages
 - jQuery
 - custom CSS
+- PostgreSQL
 
 ### The Process
 
@@ -27,4 +28,4 @@
 
 ##### Thanks
 
-[So many Django tutorials! Simple is Better Than Complex](simpleisbetterthancomplex.com)
+[So many Django tutorials! Simple is Better Than Complex](http://simpleisbetterthancomplex.com)
