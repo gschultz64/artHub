@@ -1,0 +1,251 @@
+@import url('https://fonts.googleapis.com/css?family=Kaushan+Script|Roboto');
+body {
+  background: #eee;
+  margin: 0 auto;
+  font-family: 'Roboto', sans-serif;
+  display: flex;
+  min-height: 100vh;
+  max-width: 100vw;
+  flex-direction: column;
+}
+
+main {
+  margin: .5em;
+  flex: 1 0 auto;
+}
+
+h1, h2, h3 {
+  color: #616161;
+  text-align: center;
+}
+
+.right {
+  float: right;
+}
+
+/* Nav Bar */
+
+nav {
+  background: #880E4F;
+  color: #fff;
+  padding: .5em;
+}
+
+.nav-wrapper {
+  position: relative;
+  height: 100%;
+}
+
+.site-logo {
+  color: #fff;
+  font-size: 2.5em;
+  text-decoration: none;
+  font-family: 'Kaushan Script', cursive;
+}
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+nav li {
+  float: left;
+  padding: 0;
+  transition: background-color .3s;
+}
+
+nav li a {
+  display: inline-block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+nav li a:hover:not(.active) {
+  color: #560027;
+}
+
+.active {
+  color: rgb(179, 117, 151);
+}
+
+
+footer {
+  text-align: center;
+  background-color: #880E4F;
+  color: #fff;
+  padding: 0.5em;
+  display: block;
+}
+
+i {
+  margin-left: .3em;
+}
+
+form {
+  display: inline-block;
+  width: 60vw;
+  margin-left: 35vw;
+}
+
+input#id_file {
+  padding-top: .5em;
+}
+
+input[type="text"] {
+  margin-top: .5em;
+}
+
+a.home {
+  float: right;
+}
+
+.card {
+  display: inline-block;
+  background-color: #fff;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  margin: .5em;
+  border-radius: 5px;
+  text-align: center;
+}
+
+.gallery {
+  display: inline-block;
+  cursor: pointer;
+  transition: 0.3s;
+  border-radius: 5px 5px 0 0;
+  text-align: center;
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 0 4px;
+}
+
+.container {
+  text-align: center;
+  padding: .5em 1em;
+}
+
+.large-card {
+  width: 70vw;
+  text-align: center;
+  display: inline-block;
+  background-color: #fff;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  margin: 5vh 12vw;
+  border-radius: 5px;
+}
+
+.full-img {
+  width: 100%;
+}
+
+
+/* Tooltip container */
+.tooltip {
+  position: relative;
+  display: inline-block;
+  border-bottom: 1px dotted black;
+  float: right;
+  margin-right: 4em;
+}
+
+a.tooltiptext {
+  text-decoration-line: none;
+}
+
+/* Tooltip text */
+.tooltip .tooltiptext {
+  visibility: hidden;
+  width: 180px;
+  background-color: #555;
+  color: #fff;
+  text-align: center;
+  padding: 5px 0;
+  border-radius: 6px;
+  /* Position the tooltip text */
+  position: absolute;
+  z-index: 1;
+  bottom: 125%;
+  left: 50%;
+  margin-left: -60px;
+  /* Fade in tooltip */
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+/* Tooltip arrow */
+.tooltip .tooltiptext::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: #555 transparent transparent transparent;
+}
+
+/* Show the tooltip text when you mouse over the tooltip container */
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+  opacity: 1;
+}
+
+
+.success {
+  color: green;
+  font-weight: bold;
+}
+
+.error {
+  color: red;
+  font-weight: bold;
+}
+
+.bottom-right {
+  float: right;
+}
+
+.bottom-right button {
+  margin: 1em;
+}
+
+
+@media screen and (max-width: 600px) {
+  .card {
+    width: 80vw;
+    margin-left: 8%;
+  }
+  .gallery {
+    max-width: 100%;
+  }
+  form {
+  margin-left: 25vw;
+  }
+}
+
+@media screen and (min-width: 601px) {
+  .card {
+    width: 40vw;
+    margin-left: 5vw;
+  }
+  .gallery {
+    max-width: 100%;
+  }
+
+}
+
+@media screen and (min-width: 993px) {
+  .card {
+    width: 30vw;
+    margin-left: .5em;
+  }
+  .gallery {
+    max-width: 100%;
+  }
+}
