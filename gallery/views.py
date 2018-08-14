@@ -78,7 +78,7 @@ def upload(request, username):
         if form.is_valid():
             print('user:', user, ' user_id: ', user.id)
             instance = Media(file=request.FILES['file'], user_id_id=user.id,
-                             name=form.fields['name'], description=form.fields['description'])
+                             name=form.cleaned_data.get('name'), description=form.cleaned_data.get('description'))
             instance.save()
             messages.success(request, 'Your upload was successful!')
             return redirect('upload', username)
