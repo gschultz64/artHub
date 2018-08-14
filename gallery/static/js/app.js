@@ -15,6 +15,8 @@ if (pathname !== '/') {
     $('#profile').addClass('active');
   } 
 }
+
+// Like Button
 $('.like-btn').on('click', function (e) {
   
   e.preventDefault();
@@ -30,3 +32,4 @@ $('.like-btn').on('click', function (e) {
     }
   })
 })
+

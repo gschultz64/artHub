@@ -25,7 +25,7 @@
           </li>
           {% if user.is_authenticated %}
           <li>
-            <a id="profile" href="/user/{{ user.username }}">Hello, {{user.username}}!</a>
+            <a id="profile" href="/user/{{ user.username }}">{{user.username}}'s Profile</a>
           </li>
           <li>
             <a id="upload" href="/user/{{ user.username }}/upload">Upload</a>

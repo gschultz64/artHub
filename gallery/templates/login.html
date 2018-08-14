@@ -2,6 +2,13 @@
 <h1>Login</h1>
 <form action="." method="POST">
   {% csrf_token %} {{form.as_p}}
-  <input class="" type="submit" value="Submit" />
+  <button type="submit">Log In</button>
 </form>
+{% if messages %}
+<ul class="messages">
+  {% for message in messages %}
+  <li class="{{ message.tags }}">{{ message }}</li>
+  {% endfor %}
+</ul>
+{% endif %}
 {% endblock %}

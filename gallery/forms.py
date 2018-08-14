@@ -29,7 +29,7 @@ class SignUpForm(UserCreationForm):
 
 
 class UploadForm(forms.Form):
-    name = forms.CharField(max_length=100, help_text='Required.')
+    name = forms.CharField(max_length=100)
     description = forms.CharField(
-        max_length=255, required=False, help_text='Optional')
-    file = forms.ImageField(help_text='Required.')
+        max_length=255, required=True)
+    file = forms.ImageField()

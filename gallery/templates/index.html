@@ -1,22 +1,24 @@
-{% extends 'base.html' %} 
-
-{% block content %}
+{% extends 'base.html' %} {% block content %}
 <h1>Welcome to the Art Hub!</h1>
+{% if messages %}
+<ul class="messages">
+  {% for message in messages %}
+  <li class="{{ message.tags }}">{{ message }}</li>
+  {% endfor %}
+</ul>
+{% endif %}
 <div class="row">
-  <div class="column">
-    {% for file in media %}
-    <div class="card">
-<a href="/{{file.id}}/">
-  <img class="gallery" src="/media/{{MEDIA_ROOT}}{{file.file}}" alt="{{ file.name }}">
-</a>
-      <div class="container">
-        <a href="/{{file.id}}/">
-          <p>{{file.name}}</p>
-        </a>
-        <p></p>
-      </div>
+  {% for file in media %}
+  <div class="card">
+    <a href="/{{file.id}}/">
+      <img class="gallery" src="/media/{{MEDIA_ROOT}}{{file.file}}" alt="{{ file.name }}">
+    </a>
+    <div class="container">
+      <a href="/{{file.id}}/">
+        <p>{{file.name}}</p>
+      </a>
     </div>
-    {% endfor %}
   </div>
+  {% endfor %}
 </div>
 {% endblock %}

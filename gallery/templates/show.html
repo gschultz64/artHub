@@ -1,23 +1,25 @@
 {% extends 'base.html' %} {% block content %}
 <h1>{{media.name}}</h1>
-<div class="row">
-  <div class="column">
-    <div class="large-card">
-      <img class="full-img" src="/media/{{MEDIA_ROOT}}{{media.file}}" alt="{{ media.name }}">
-      <div class="container">
-        <p>{{media.description}}</p>
-        <p>File Uploaded: {{media.uploaded_at}}</p>
-      </div>
-    </div>
-    <div>
-      <a href="{% url 'index' %}">Return to home</a>
-      <a class="like-btn" data-id="{{media.id}}">
-        <button type="button">
-          <i class="em em-purple_heart"></i>{% if media.likes > 0 %} {{ media.likes }} {% else %} None {% endif %}
-        </button>
-      </a>
-      <input type="button" value="Buy a Print">
-    </div>
+<div class="large-card">
+  <img class="full-img" src="/media/{{MEDIA_ROOT}}{{media.file}}" alt="{{ media.name }}">
+  <div class="container">
+    <p>{{media.description}}</p>
+    <p>File Uploaded: {{media.uploaded_at}}</p>
   </div>
 </div>
-{% endblock %}
+<a href="{% url 'index' %}">Return to home</a>
+<div class="bottom-right">
+  <a class="like-btn" data-id="{{media.id}}">
+    <button type="button">
+      <i class="em em-purple_heart"></i>{% if media.likes > 0 %} {{ media.likes }} {% else %} None {% endif %}
+    </button>
+  </a>
+  <button type="button">Buy a Print</button>
+</div>
+{% if messages %}
+<ul class="messages">
+  {% for message in messages %}
+  <li class="{{ message.tags }}">{{ message }}</li>
+  {% endfor %}
+</ul>
+{% endif %} {% endblock %}

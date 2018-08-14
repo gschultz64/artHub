@@ -3,6 +3,7 @@ from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
 from django import forms
 from django.views import View
 from django.conf import settings
+from django.contrib import messages
 from django.core.files.storage import FileSystemStorage
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
@@ -16,8 +17,8 @@ import requests
 
 def index(request):
     media = Media.objects.all()
-
     return render(request, 'index.html', {'media': media})
+
 
 def show(request, media_id):
     media = Media.objects.get(id=media_id)
@@ -34,14 +35,12 @@ def login_view(request):
             if user is not None:
                 if user.is_active:
                     login(request, user)
+                    messages.success(request, 'You successfully logged in!')
                     return HttpResponseRedirect('/')
                 else:
-                    print("Account disabled")
                     return HttpResponseRedirect('/login')
             else:
-                print("Username and/or password is incorrect")
-        else:
-            print("form is not valid")
+                messages.error(request, 'Your username and/or password is incorrect.')
     else:
         form = LoginForm()
         return render(request, 'login.html', {'form': form})
@@ -56,6 +55,7 @@ def signup(request):
             raw_password = form.cleaned_data.get('password1')
             user = authenticate(username=username, password=raw_password)
             login(request, user)
+            messages.success(request, 'You have signed up for Art Hub and are logged in!')
             return redirect('index')
     else:
         form = SignUpForm()
@@ -69,7 +69,6 @@ def profile(request, username):
     return render(request, 'profile.html', {'username': username, 'media': media, })
 
 
-
 @login_required
 def upload(request, username):
     user = User.objects.get(username=username)
@@ -81,6 +80,7 @@ def upload(request, username):
             instance = Media(file=request.FILES['file'], user_id_id=user.id,
                              name=form.fields['name'], description=form.fields['description'])
             instance.save()
+            messages.success(request, 'Your upload was successful!')
             return redirect('upload', username)
     else:
         form = UploadForm()

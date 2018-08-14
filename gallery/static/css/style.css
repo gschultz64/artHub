@@ -14,7 +14,7 @@ main {
   flex: 1 0 auto;
 }
 
-h1 {
+h1, h2, h3 {
   color: #616161;
   text-align: center;
 }
@@ -43,7 +43,7 @@ nav {
   font-family: 'Kaushan Script', cursive;
 }
 
-nav ul {
+ul {
   list-style-type: none;
   margin: 0;
   padding: 0;
@@ -71,6 +71,7 @@ nav li a:hover:not(.active) {
   color: rgb(179, 117, 151);
 }
 
+
 footer {
   text-align: center;
   background-color: #880E4F;
@@ -81,6 +82,24 @@ footer {
 
 i {
   margin-left: .3em;
+}
+
+form {
+  display: inline-block;
+  width: 60vw;
+  margin-left: 35vw;
+}
+
+input#id_file {
+  padding-top: .5em;
+}
+
+input[type="text"] {
+  margin-top: .5em;
+}
+
+a.home {
+  float: right;
 }
 
 .card {
@@ -125,6 +144,78 @@ i {
   width: 100%;
 }
 
+
+/* Tooltip container */
+.tooltip {
+  position: relative;
+  display: inline-block;
+  border-bottom: 1px dotted black;
+  float: right;
+  margin-right: 4em;
+}
+
+a.tooltiptext {
+  text-decoration-line: none;
+}
+
+/* Tooltip text */
+.tooltip .tooltiptext {
+  visibility: hidden;
+  width: 180px;
+  background-color: #555;
+  color: #fff;
+  text-align: center;
+  padding: 5px 0;
+  border-radius: 6px;
+  /* Position the tooltip text */
+  position: absolute;
+  z-index: 1;
+  bottom: 125%;
+  left: 50%;
+  margin-left: -60px;
+  /* Fade in tooltip */
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+/* Tooltip arrow */
+.tooltip .tooltiptext::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: #555 transparent transparent transparent;
+}
+
+/* Show the tooltip text when you mouse over the tooltip container */
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+  opacity: 1;
+}
+
+
+.success {
+  color: green;
+  font-weight: bold;
+}
+
+.error {
+  color: red;
+  font-weight: bold;
+}
+
+.bottom-right {
+  float: right;
+}
+
+.bottom-right button {
+  margin: 1em;
+}
+
+
 @media screen and (max-width: 600px) {
   .card {
     width: 80vw;
@@ -132,6 +223,9 @@ i {
   }
   .gallery {
     max-width: 100%;
+  }
+  form {
+  margin-left: 25vw;
   }
 }
 
@@ -143,6 +237,7 @@ i {
   .gallery {
     max-width: 100%;
   }
+
 }
 
 @media screen and (min-width: 993px) {

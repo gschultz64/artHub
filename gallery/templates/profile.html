@@ -2,22 +2,29 @@
 <h1>{{username}}'s Profile</h1>
 <br/>
 
+<div class="tooltip">Your Account Info
+  <a href="#" class="tooltiptext">
+    <h3>Account Info:</h3>
+    <ul>
+      <li>Username: {{username}}</li>
+      <li>Name: {{user.first_name}} {{user.last_name}}</li>
+    </ul>
+  </a>
+</div>
 <h2>{{username}}'s Uploads:</h2>
 <div class="row">
-  <div class="column">
-    {% for file in media %}
-    <div class="card">
+  {% for file in media %}
+  <div class="card">
+    <a href="/{{file.id}}/">
+      <img class="gallery" src="/media/{{MEDIA_ROOT}}{{file.file}}" alt="{{ file.description }}">
+    </a>
+    <div class="container">
       <a href="/{{file.id}}/">
-        <img class="gallery" src="/media/{{MEDIA_ROOT}}{{file.file}}" alt="{{ file.description }}">
+        <p>{{file.name}}</p>
       </a>
-      <div class="container">
-        <a href="/{{file.id}}/">
-          <p>{{file.name}}</p>
-        </a>
-      </div>
     </div>
-    {% endfor %}
   </div>
+  {% endfor %}
 </div>
 
 
